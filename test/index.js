@@ -43,4 +43,16 @@ describe('ConfigGuardian', () => {
 		});
 		expect(configGuardian).to.eql(expectedStructure);
 	});
+
+	it('can be instantiated with an ignore file list', () => {
+		const configGuardian = ConfigGuardian({
+			ignore: [
+				'nope_modules',
+				'exclude_me'
+			],
+			projectRoot: path.join(__dirname, '/data/5'),
+			refresh: true
+		});
+		expect(configGuardian).to.eql(expectedStructure);
+	});
 });

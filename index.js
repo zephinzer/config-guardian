@@ -10,12 +10,14 @@ function ConfigGuardianSync(_projectRoot, _options) {
 	const configGuardianKeyName = options.keyName || 'config';
 	const configuration = {};
 	const currentDirectoryListing = fs.readdirSync(projectRoot);
+	const ignoreList = options.ignore || [];
 
 	currentDirectoryListing.forEach(function(filename) {
 		const fullPath = path.join(projectRoot, filename);
 		const thisPath = fs.lstatSync(fullPath);
 		const isJavaScriptFile = (fullPath.lastIndexOf(fileExtension) === (fullPath.length - fileExtension.length));
-
+		const notInIgnoreList = (ignoreList.indexOf(filename) === -1); 
+		
 		if(thisPath.isFile() && (isJavaScriptFile)) {
 			const loadedModule = require(fullPath);
 			if(loadedModule) {
@@ -24,8 +26,8 @@ function ConfigGuardianSync(_projectRoot, _options) {
 					configuration[key] = loadedModule[key];
 				}
 			}
-		} else if(thisPath.isDirectory()) {
-			const downstreamConfiguration = ConfigGuardianSync(fullPath);
+		} else if(thisPath.isDirectory() && (notInIgnoreList)) {
+			const downstreamConfiguration = ConfigGuardianSync(fullPath, _options);
 			for(var key in downstreamConfiguration) {
 				configuration[key] = downstreamConfiguration[key];
 			}
