@@ -3,16 +3,16 @@
 Recursively goes through all folders starting from the folder you called ConfigGuardian
 from and includes all keys inside *.config.js files into ConfigGuardian.
 
-Example usage:
+## Example usage
 
-` main.js
+### main.js
 ```
 // ...
-ConfigGuardian();
+ConfigGuardian({ /* :options */ });
 // ...
 ```
 
-` some-module.config.js
+### some-module.config.js
 ```
 module.exports = {
 	key1: 1,
@@ -20,8 +20,15 @@ module.exports = {
 };
 ```
 
-` other-module.config.js
+### other-module.config.js
 ```
 const config = require('config-guardian');
 config.key1; // 1
 ```
+
+## Changelog
+### 1.1.0
+Added `ignore` option.
+
+### 1.0.0
+Initial release
