@@ -1,0 +1,29 @@
+{
+  "name": "config-guardian",
+  "version": "1.0.0",
+  "description": "Configuration Guardian is a tool that allows you to specify configuration details throughout your application and have it all loaded at a go.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "configuration",
+    "guardian",
+    "conf",
+    "config",
+    "file",
+    "collate",
+    "component",
+    "separation",
+    "concerns"
+  ],
+  "author": "Joseph Matthias Goh <joseph-at-joeir-dot-net>",
+  "license": "MIT",
+  "dependencies": {
+    "q": "^1.4.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.1.2"
+  }
+}
