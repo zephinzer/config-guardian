@@ -8,7 +8,7 @@ Example usage:
 ` main.js
 ```
 // ...
-ConfigGuardian()
+ConfigGuardian();
 // ...
 ```
 
