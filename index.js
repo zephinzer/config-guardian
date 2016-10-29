@@ -41,6 +41,7 @@ function ConfigGuardian(_options) {
 	if(!ConfigGuardian.store || (_options.refresh === true)) {
 		const callerPath = (new Error()).stack.split('\n')[2];
 		const projectRoot = (options.projectRoot) ? options.projectRoot : callerPath.substr( callerPath.indexOf('(') + 1, callerPath.lastIndexOf('/') - callerPath.indexOf('(') );
+		ConfigGuardian.envs = options.environments || [ 'test', 'development', 'staging', 'production' ];
 		options.keyName = options.keyName || 'config';
 		options.sync = (options.sync === undefined) ? true : options.sync;
 		ConfigGuardian.store = ConfigGuardianSync(projectRoot, options);
@@ -49,5 +50,16 @@ function ConfigGuardian(_options) {
 };
 
 ConfigGuardian.store = null;
+ConfigGuardian.envs = [];
+
+ConfigGuardian.EnvConfig = function() {
+	const configValue = {};
+	const args = arguments;
+	var counter = 0;
+	ConfigGuardian.envs.forEach(function(environment) {
+		configValue[environment] = args[counter++]; 
+	});
+	return configValue;
+};
 
 module.exports = ConfigGuardian;
