@@ -56,6 +56,13 @@ ConfigGuardian.EnvConfig = function() {
 	const configValue = {};
 	const args = arguments;
 	var counter = 0;
+	if(arguments.length < ConfigGuardian.envs.length) {
+		console.warn('[ConfigGuardian]: Number of arguments provided to EnvConfig() is not equal to the number of configured environments.');
+		console.warn('[ConfigGuardian]: Use the `environments` option to set the available environments in your first call to ConfigGuardian().');
+		console.warn('[ConfigGuardian] ------------------ begin stack trace ------------------');
+		console.warn((new Error()).stack);
+		console.warn('[ConfigGuardian] ------------------ endof stack trace ------------------');
+	}
 	ConfigGuardian.envs.forEach(function(environment) {
 		configValue[environment] = args[counter++]; 
 	});

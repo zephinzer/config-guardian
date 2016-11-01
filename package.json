@@ -1,6 +1,6 @@
 {
   "name": "config-guardian",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Configuration Guardian is a tool that allows you to specify configuration details throughout your application and have it all loaded at a go.",
   "main": "index.js",
   "scripts": {
