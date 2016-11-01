@@ -18,12 +18,20 @@ describe('ConfigGuardian', () => {
 			});
 		}).to.throw();
 	});
+
 	it('works on a single file', () => {
 		const configGuardian = ConfigGuardian({
 			projectRoot: path.join(__dirname, '/data/1'),
 			refresh: true
 		});
 		expect(configGuardian).to.eql(expectedStructure);
+	});
+	it('can be retrieved by calling ConfigGuardian() a second time', () => {
+		const configGuardian = ConfigGuardian({
+			projectRoot: path.join(__dirname, '/data/1'),
+			refresh: true
+		});
+		expect(ConfigGuardian()).to.eql(expectedStructure);
 	});
 
 	it('throws an error on duplicates', () => {

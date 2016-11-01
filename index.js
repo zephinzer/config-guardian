@@ -38,7 +38,7 @@ function ConfigGuardianSync(_projectRoot, _options) {
 
 function ConfigGuardian(_options) {
 	const options = _options || {};
-	if(!ConfigGuardian.store || (_options.refresh === true)) {
+	if(!ConfigGuardian.store || (options.refresh === true)) {
 		const callerPath = (new Error()).stack.split('\n')[2];
 		const projectRoot = (options.projectRoot) ? options.projectRoot : callerPath.substr( callerPath.indexOf('(') + 1, callerPath.lastIndexOf('/') - callerPath.indexOf('(') );
 		ConfigGuardian.envs = options.environments || [ 'test', 'development', 'staging', 'production' ];
